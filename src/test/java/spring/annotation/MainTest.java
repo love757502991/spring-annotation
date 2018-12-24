@@ -10,10 +10,24 @@ import spring.annotation.model.Person;
 
 import java.util.Map;
 
+// java bean扫描的数据
 public class MainTest {
 
 //    private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn.class);
-    private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn2.class);
+    private AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn2.class);
+
+    //根据beanFactory
+    @Test
+    public void test03(){
+//        printBeans(applicationContext);
+
+        Object object = applicationContext.getBean("getFactory");
+        Object object1 = applicationContext.getBean("getFactory");
+        System.out.println(object);
+        System.out.println(object1);
+
+        applicationContext.close();
+    }
 
     //根据条件加载bean
     @Test

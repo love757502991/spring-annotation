@@ -4,54 +4,31 @@ package spring.annotation;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import spring.annotation.config.MyConfigAnn;
 import spring.annotation.config.MyConfigAnn2;
+import spring.annotation.config.MyConfigAnn_life;
 import spring.annotation.model.Person;
 
 import java.util.Map;
 
 // java bean扫描的数据
-public class MainTest {
+public class MainTest_life {
 
-//    private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn.class);
-    private AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn2.class);
+    private AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfigAnn_life.class);
 
     //根据beanFactory
     @Test
-    public void test03(){
-//        printBeans(applicationContext);
-
-        Object object = applicationContext.getBean("getFactory");
-        Object object1 = applicationContext.getBean("getFactory");
-        System.out.println(object);
-        System.out.println(object1);
+    public void test04(){
 
         applicationContext.close();
     }
 
-    //根据条件加载bean
+    //根据beanFactory
     @Test
-    public void test02(){
-        printBeans(applicationContext);
+    public void test03(){
 
-        Map<String , Person> map = applicationContext.getBeansOfType(Person.class);
+        applicationContext.getBean("cat01");
 
-        System.out.println(map);
-    }
-
-    @Test
-    public void test01(){
-        printBeans(applicationContext);
-    }
-
-    private void printBeans(ApplicationContext applicationContext) {
-
-        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-
-        for (String bean :beanDefinitionNames){
-            System.out.println(bean);
-        }
-
+        applicationContext.close();
     }
 
 }
